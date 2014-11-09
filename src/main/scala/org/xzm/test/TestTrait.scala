@@ -1,20 +1,33 @@
 package org.xzm.test
 
-trait log{
-  val s: Int
-  def f()
+trait Logger {
+  def log(msg: String) {}
+  def info(msg: String) {
+    log("info: " + msg)
+  }
+
+  def warn(msg: String) {
+    log("warn: " + msg)
+  }
+
+  def error(msg: String) {
+    log("error: " + msg)
+  }
 }
 
-abstract class logger extends log{
-   //val s: Int
-  //def f(){
-  //  println("in logger")
-  //}
+class LogTest extends Logger {
+  def withdraw(msg: String) {
+    info(msg)
+  }
+
+  override def log(msg: String) {
+    println(msg)
+  }
 }
 
-object TestTrait{
-  def main(args: Array[String]){
-    //val l = new logger
-    //l.f
+object TestTrait {
+  def main(args: Array[String]) {
+    val a = new LogTest
+    a.withdraw("123")
   }
 }
